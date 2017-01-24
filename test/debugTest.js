@@ -17,99 +17,87 @@ before((done)=>{
   this.console = {
   log: sinon.spy()};
 
-util.__set__('console', this.console);
+  util.__set__('console', this.console);
 
-msg = {
-  type: 'Warn',
-  mesg: 'utility tool',
-  path: '/Users/usrname/www/_tests/debugTool/test.js',
-  line: 4,
-  func: null,
-  ftyp: 'Object',
-  meth: null,
-  data: 'null' };
+  msg = {
+    type: 'Warn',
+    mesg: 'utility tool',
+    path: '/Users/usrname/www/_tests/debugTool/test.js',
+    line: 4,
+    func: null,
+    ftyp: 'Object',
+    meth: null,
+    data: 'null' };
 
-time = `Time: ${date.getHours()}:${date.getMinutes()} i${date.getSeconds()}`;
+  time = `Time: ${date.getHours()}:${date.getMinutes()} i${date.getSeconds()}`;
 
-type = 1;
+  type = 1;
 
-data = ['unit','testing'];
+  data = ['unit','testing'];
 
-ret = 'temp';
-
-done()
-
-});
-
-it('Grab function should return null', function () {
-  const debug = util.grab('--debug');
-  expect(debug).to.equal(null)
-});
-
-it('logTofile function should return 1', function (done) {
-
-  const debug = util.logTofile(msg, time, (res) => {
-      return res
-    } );
-
-  expect(debug).to.equal(1);
+  ret = 'temp';
 
   done()
 
-});
+  });
 
-it('colorAndConsole function should return 1 if debug mode is on', function (done) {
+  it('Grab function should return null', function () {
+    const debug = util.grab('--debug');
+    expect(debug).to.equal(null)
+  });
 
-  const debug = util.colorAndConsole(msg, time, (res) => {
-      return res
-    } );
+  it('colorAndConsole function should return 1 if debug mode is on', function (done) {
 
-  expect(debug).to.equal(undefined);
+    const debug = util.colorAndConsole(msg, time, (res) => {
+        return res
+      } );
+
+    expect(debug).to.equal(1);
+
+    done()
+
+  });
+
+  it('debug function should return 0 if debug mode is off', function (done) {
+    process.env.DEBUG = 'false';
+    util.process = ['--debug','false'];
+    util.debug('testing', type, data, (res) => {
+      res.should.equal(0);
+    done();
+  } );
+  });
+
+  it('debug function should return 1', function (done) {
+    process.env.DEBUG = 'true';
+    util.process = ['--debug','true'];
+    util.debug('testing', type, data, (res) => {
+      res.should.equal(1);
+    done();
+  } );
+  });
+
+  it('debug function should return 0 if message is not defined', function (done) {
+    process.env.DEBUG = 'true';
+    util.process = ['--debug','true'];
+    util.debug('', type, data, (res) => {
+      res.should.equal(0);
+    done();
+  } );
+  });
+
+  it('debug function should return 0 if type is over 2', function (done) {
+    process.env.DEBUG = 'true';
+    util.process = ['--debug','true'];
+    util.debug('msg', 3 , data, (res) => {
+      res.should.equal(0);
+    done();
+  } );
+  });
+
+  it("Caller Function shoult return an object", (done) => {
+    let obj = caller();
+  expect(obj).to.be.a("object")
 
   done()
-
-});
-
-it('debug function should return 0 if debug mode is off', function (done) {
-  process.env.DEBUG = 'false';
-  util.process = ['--debug','false'];
-  util.debug('testing', type, data, (res) => {
-    res.should.equal(0);
-  done();
-} );
-});
-
-it('debug function should return 1', function (done) {
-  process.env.DEBUG = 'true';
-  util.process = ['--debug','true'];
-  util.debug('testing', type, data, (res) => {
-    res.should.equal(1);
-  done();
-} );
-});
-
-it('debug function should return 0 if message is not defined', function (done) {
-  process.env.DEBUG = 'true';
-  util.process = ['--debug','true'];
-  util.debug('', type, data, (res) => {
-    res.should.equal(0);
-  done();
-} );
-});
-
-it('debug function should return 0 if type is over 2', function (done) {
-  process.env.DEBUG = 'true';
-  util.process = ['--debug','true'];
-  util.debug('msg', 3 , data, (res) => {
-    res.should.equal(0);
-  done();
-} );
-});
-
-it("Caller Function shoult return an object", (done) => {
-  let obj = caller();
-expect(obj).to.be.a("object")
-
-done()
-})
+  })
 });
