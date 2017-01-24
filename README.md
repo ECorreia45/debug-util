@@ -1,5 +1,7 @@
 # Debug Utility Tool
 
+Tool available through npm as [debug_utility_tool](https://www.npmjs.com/package/debug_utility_tool)
+
 This is a very easy to use tool that intends to help making 
 logging and console.logging rich. This tool will allow you 
 to have detailed message of what is going on with your project 
