@@ -46,23 +46,13 @@ describe('Debug Utility', () => {
     done();
   });
 
-  it('logTofile function should return 1', function (done) {
-
-    const debug = util.logTofile(msg, time, (res) => {
-      return res
-    } );
-    expect(debug).to.equal(1);
-    done();
-
-  });
-
-  it('colorAndConsole function should be undefined if debug mode is on', function (done) {
+  it('colorAndConsole function should be 1 if debug mode is on', function (done) {
 
     const debug = util.colorAndConsole(msg, time, (res) => {
       return res
     } );
     console.log(debug);
-    expect(debug).to.equal(undefined);
+    expect(debug).to.equal(1);
 
     done();
 
@@ -110,5 +100,23 @@ describe('Debug Utility', () => {
 
     done()
   })
+
+  describe('Version Bump Utility', () => {
+    it('Test Major', () => {
+      const patch = util.versionBump('1.9.9', 'Major');
+      expect(patch).to.be.equal('2.0.0');
+    });
+
+      it('Test Minor', () => {
+      const patch = util.versionBump('1.9.9', 'minor');
+      expect(patch).to.be.equal('1.10.0');
+    });
+
+      it('Test Patch', () => {
+      const patch = util.versionBump('1.9.9', 'patch');
+      expect(patch).to.be.equal('1.9.10');
+    });
+  });
+
 });
 

@@ -1,6 +1,6 @@
 {
   "name": "debug_utility_tool",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "This is a better way to console log and log in general",
   "main": "debug-util.js",
   "scripts": {

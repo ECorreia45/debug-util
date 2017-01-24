@@ -81,7 +81,7 @@ for example:
 
 ```javascript
 
-let n = 4;
+const n = 4;
 
 function foo(number){
     util.debug('what is the number?', 2, number)
@@ -116,5 +116,14 @@ util.debug('what is the number?', 2, number, function (err) {
 This callback function is used to see if the tool did its job or failed.
 You will double check if the tool threw an error and you didnt happen to catch it.
 
-
-
+### Version Bumper
+ Version bump accept 2 arguments, the Version
+ and a type argument to increment the Version,
+ then return a version number as a string.
+ 
+ Using Version Bump:
+ ```
+ const util = require('./debug-util');
+ const patch = util.verBump('3.3.3', 'patch');
+ const minor = util.verBump('3.3.3', 'minor');
+ const major = util.verBump('3.3.3', 'major');
