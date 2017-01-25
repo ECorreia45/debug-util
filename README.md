@@ -127,6 +127,6 @@ You will double check if the tool threw an error and you didnt happen to catch i
  Using Version Bump:
  ```
  const util = require('./debug-util');
- const patch = util.verBump('3.3.3', 'patch');
- const minor = util.verBump('3.3.3', 'minor');
- const major = util.verBump('3.3.3', 'major');
+ const patch = util.versionBump('3.3.3', 'patch');
+ const minor = util.versionBump('3.3.3', 'minor');
+ const major = util.versionBump('3.3.3', 'major');
