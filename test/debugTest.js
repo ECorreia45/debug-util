@@ -52,7 +52,6 @@ describe('Debug Utility', () => {
     const debug = util.colorAndConsole(msg, time, (res) => {
       return res
     } );
-    console.log(debug);
     expect(debug).to.equal(1);
 
     done();

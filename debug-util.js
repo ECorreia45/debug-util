@@ -6,7 +6,6 @@ const date = new Date();
 
 const proc = process.argv;
 
-
 // grab parameter passed when script was ran
 function grab(param) {
   const i = proc.indexOf(param);
@@ -30,12 +29,10 @@ function versionBump(currentVersion, incrementType){
     case 'patch':
        versionArray[2] += 1; // patch
        break;
-
     case 'minor':
        versionArray[1] += 1;// minor
        versionArray[2] = 0; // patch
        break;
-
     case 'major':
        versionArray[0] += 1;// major
        versionArray[1] = 0;// minor

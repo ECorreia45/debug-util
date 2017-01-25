@@ -1,6 +1,6 @@
 {
   "name": "debug_utility_tool",
-  "version": "1.0.3",
+  "version": "1.10.0",
   "description": "This is a better way to console log and log in general",
   "main": "debug-util.js",
   "scripts": {
@@ -27,5 +27,10 @@
     "sinon": "^1.17.7",
     "stack-trace": "0.0.9"
   },
-  "engine": "node >= 6.9.4"
+  "engine": "node >= 6.9.4",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-git": "^1.12.0",
+    "gulp-json-editor": "^2.2.1"
+  }
 }
